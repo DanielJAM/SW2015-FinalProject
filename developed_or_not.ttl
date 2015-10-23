@@ -1,0 +1,700 @@
+@prefix : <http://www.semanticweb.org/djam/ontologies/developed_or_not#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/djam/ontologies/developed_or_not> .
+
+<http://www.semanticweb.org/djam/ontologies/developed_or_not> rdf:type owl:Ontology .
+
+
+#################################################################
+#
+#    Data properties
+#
+#################################################################
+
+
+###  http://wifo5-04.informatik.uni-mannheim.de/eurostat/resource/eurostat/hospitalBedsPer100000Habitants
+
+
+
+
+###  http://wifo5-04.informatik.uni-mannheim.de/eurostat/resource/eurostat/levelOfInternetAccess
+
+
+
+
+###  http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#GDPperCapita
+
+
+
+
+###  http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#lifeexpectancyatbirth_totalpopulation
+
+
+
+
+###  http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#literacy_totalpopulation
+
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://www.semanticweb.org/djam/ontologies/countries_categorised#Countries
+
+<http://www.semanticweb.org/djam/ontologies/countries_categorised#Countries> rdf:type owl:Class .
+
+
+
+###  http://www.semanticweb.org/djam/ontologies/countries_categorised#DataUnavailable
+
+<http://www.semanticweb.org/djam/ontologies/countries_categorised#DataUnavailable> rdf:type owl:Class ;
+                                                                                   
+                                                                                   owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                                                         owl:onProperty <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#GDPperCapita> ;
+                                                                                                         owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                              owl:onDatatype xsd:long ;
+                                                                                                                              owl:withRestrictions ( [ xsd:maxInclusive "0"^^xsd:long
+                                                                                                                                                     ]
+                                                                                                                                                   )
+                                                                                                                            ]
+                                                                                                       ] ;
+                                                                                   
+                                                                                   rdfs:subClassOf <http://www.semanticweb.org/djam/ontologies/countries_categorised#Countries> ;
+                                                                                   
+                                                                                   owl:disjointWith <http://www.semanticweb.org/djam/ontologies/countries_categorised#DevelopedCountries> ,
+                                                                                                    <http://www.semanticweb.org/djam/ontologies/countries_categorised#OverallDeveloped> ,
+                                                                                                    <http://www.semanticweb.org/djam/ontologies/countries_categorised#PartiallyDeveloped> .
+
+
+
+###  http://www.semanticweb.org/djam/ontologies/countries_categorised#DevelopedCountries
+
+<http://www.semanticweb.org/djam/ontologies/countries_categorised#DevelopedCountries> rdf:type owl:Class ;
+                                                                                      
+                                                                                      owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                                                            owl:onProperty <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#GDPperCapita> ;
+                                                                                                            owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                 owl:onDatatype xsd:long ;
+                                                                                                                                 owl:withRestrictions ( [ xsd:minInclusive "20000"^^xsd:long
+                                                                                                                                                        ]
+                                                                                                                                                      )
+                                                                                                                               ]
+                                                                                                          ] ;
+                                                                                      
+                                                                                      rdfs:subClassOf <http://www.semanticweb.org/djam/ontologies/countries_categorised#Countries> ;
+                                                                                      
+                                                                                      owl:disjointWith <http://www.semanticweb.org/djam/ontologies/countries_categorised#OverallUndeveloped> ,
+                                                                                                       <http://www.semanticweb.org/djam/ontologies/countries_categorised#PartiallyUndeveloped> ,
+                                                                                                       <http://www.semanticweb.org/djam/ontologies/countries_categorised#UndevelopedCountries> .
+
+
+
+###  http://www.semanticweb.org/djam/ontologies/countries_categorised#OverallDeveloped
+
+<http://www.semanticweb.org/djam/ontologies/countries_categorised#OverallDeveloped> rdf:type owl:Class ;
+                                                                                    
+                                                                                    owl:equivalentClass [ rdf:type owl:Class ;
+                                                                                                          owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                                                 owl:onProperty <http://wifo5-04.informatik.uni-mannheim.de/eurostat/resource/eurostat/hospitalBedsPer100000Habitants> ;
+                                                                                                                                 owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                                      owl:onDatatype xsd:long ;
+                                                                                                                                                      owl:withRestrictions ( [ xsd:minExclusive "150"^^xsd:long
+                                                                                                                                                                             ]
+                                                                                                                                                                           )
+                                                                                                                                                    ]
+                                                                                                                               ]
+                                                                                                                               [ rdf:type owl:Restriction ;
+                                                                                                                                 owl:onProperty <http://wifo5-04.informatik.uni-mannheim.de/eurostat/resource/eurostat/levelOfInternetAccess> ;
+                                                                                                                                 owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                                      owl:onDatatype xsd:long ;
+                                                                                                                                                      owl:withRestrictions ( [ xsd:minInclusive "49"^^xsd:long
+                                                                                                                                                                             ]
+                                                                                                                                                                           )
+                                                                                                                                                    ]
+                                                                                                                               ]
+                                                                                                                               [ rdf:type owl:Restriction ;
+                                                                                                                                 owl:onProperty <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#GDPperCapita> ;
+                                                                                                                                 owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                                      owl:onDatatype xsd:long ;
+                                                                                                                                                      owl:withRestrictions ( [ xsd:minInclusive "20000"^^xsd:long
+                                                                                                                                                                             ]
+                                                                                                                                                                           )
+                                                                                                                                                    ]
+                                                                                                                               ]
+                                                                                                                               [ rdf:type owl:Restriction ;
+                                                                                                                                 owl:onProperty <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#lifeexpectancyatbirth_totalpopulation> ;
+                                                                                                                                 owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                                      owl:onDatatype xsd:long ;
+                                                                                                                                                      owl:withRestrictions ( [ xsd:minInclusive "71"^^xsd:long
+                                                                                                                                                                             ]
+                                                                                                                                                                           )
+                                                                                                                                                    ]
+                                                                                                                               ]
+                                                                                                                               [ rdf:type owl:Restriction ;
+                                                                                                                                 owl:onProperty <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#literacy_totalpopulation> ;
+                                                                                                                                 owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                                      owl:onDatatype xsd:long ;
+                                                                                                                                                      owl:withRestrictions ( [ xsd:minInclusive "97"^^xsd:long
+                                                                                                                                                                             ]
+                                                                                                                                                                           )
+                                                                                                                                                    ]
+                                                                                                                               ]
+                                                                                                                             )
+                                                                                                        ] ;
+                                                                                    
+                                                                                    rdfs:subClassOf <http://www.semanticweb.org/djam/ontologies/countries_categorised#DevelopedCountries> ;
+                                                                                    
+                                                                                    owl:disjointWith <http://www.semanticweb.org/djam/ontologies/countries_categorised#OverallUndeveloped> ,
+                                                                                                     <http://www.semanticweb.org/djam/ontologies/countries_categorised#PartiallyDeveloped> ,
+                                                                                                     <http://www.semanticweb.org/djam/ontologies/countries_categorised#PartiallyUndeveloped> ,
+                                                                                                     <http://www.semanticweb.org/djam/ontologies/countries_categorised#UndevelopedCountries> .
+
+
+
+###  http://www.semanticweb.org/djam/ontologies/countries_categorised#OverallUndeveloped
+
+<http://www.semanticweb.org/djam/ontologies/countries_categorised#OverallUndeveloped> rdf:type owl:Class ;
+                                                                                      
+                                                                                      owl:equivalentClass [ rdf:type owl:Class ;
+                                                                                                            owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                                                   owl:onProperty <http://wifo5-04.informatik.uni-mannheim.de/eurostat/resource/eurostat/hospitalBedsPer100000Habitants> ;
+                                                                                                                                   owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                                        owl:onDatatype xsd:long ;
+                                                                                                                                                        owl:withRestrictions ( [ xsd:minExclusive "0"^^xsd:long
+                                                                                                                                                                               ]
+                                                                                                                                                                             )
+                                                                                                                                                      ]
+                                                                                                                                 ]
+                                                                                                                                 [ rdf:type owl:Restriction ;
+                                                                                                                                   owl:onProperty <http://wifo5-04.informatik.uni-mannheim.de/eurostat/resource/eurostat/hospitalBedsPer100000Habitants> ;
+                                                                                                                                   owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                                        owl:onDatatype xsd:long ;
+                                                                                                                                                        owl:withRestrictions ( [ xsd:maxExclusive "150"^^xsd:long
+                                                                                                                                                                               ]
+                                                                                                                                                                             )
+                                                                                                                                                      ]
+                                                                                                                                 ]
+                                                                                                                                 [ rdf:type owl:Restriction ;
+                                                                                                                                   owl:onProperty <http://wifo5-04.informatik.uni-mannheim.de/eurostat/resource/eurostat/levelOfInternetAccess> ;
+                                                                                                                                   owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                                        owl:onDatatype xsd:long ;
+                                                                                                                                                        owl:withRestrictions ( [ xsd:minExclusive "0"^^xsd:long
+                                                                                                                                                                               ]
+                                                                                                                                                                             )
+                                                                                                                                                      ]
+                                                                                                                                 ]
+                                                                                                                                 [ rdf:type owl:Restriction ;
+                                                                                                                                   owl:onProperty <http://wifo5-04.informatik.uni-mannheim.de/eurostat/resource/eurostat/levelOfInternetAccess> ;
+                                                                                                                                   owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                                        owl:onDatatype xsd:long ;
+                                                                                                                                                        owl:withRestrictions ( [ xsd:maxExclusive "49"^^xsd:long
+                                                                                                                                                                               ]
+                                                                                                                                                                             )
+                                                                                                                                                      ]
+                                                                                                                                 ]
+                                                                                                                                 [ rdf:type owl:Restriction ;
+                                                                                                                                   owl:onProperty <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#lifeexpectancyatbirth_totalpopulation> ;
+                                                                                                                                   owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                                        owl:onDatatype xsd:long ;
+                                                                                                                                                        owl:withRestrictions ( [ xsd:minExclusive "0"^^xsd:long
+                                                                                                                                                                               ]
+                                                                                                                                                                             )
+                                                                                                                                                      ]
+                                                                                                                                 ]
+                                                                                                                                 [ rdf:type owl:Restriction ;
+                                                                                                                                   owl:onProperty <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#lifeexpectancyatbirth_totalpopulation> ;
+                                                                                                                                   owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                                        owl:onDatatype xsd:long ;
+                                                                                                                                                        owl:withRestrictions ( [ xsd:maxExclusive "71"^^xsd:long
+                                                                                                                                                                               ]
+                                                                                                                                                                             )
+                                                                                                                                                      ]
+                                                                                                                                 ]
+                                                                                                                                 [ rdf:type owl:Restriction ;
+                                                                                                                                   owl:onProperty <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#literacy_totalpopulation> ;
+                                                                                                                                   owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                                        owl:onDatatype xsd:long ;
+                                                                                                                                                        owl:withRestrictions ( [ xsd:minExclusive "0"^^xsd:long
+                                                                                                                                                                               ]
+                                                                                                                                                                             )
+                                                                                                                                                      ]
+                                                                                                                                 ]
+                                                                                                                                 [ rdf:type owl:Restriction ;
+                                                                                                                                   owl:onProperty <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#literacy_totalpopulation> ;
+                                                                                                                                   owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                                        owl:onDatatype xsd:long ;
+                                                                                                                                                        owl:withRestrictions ( [ xsd:maxExclusive "70"^^xsd:long
+                                                                                                                                                                               ]
+                                                                                                                                                                             )
+                                                                                                                                                      ]
+                                                                                                                                 ]
+                                                                                                                               )
+                                                                                                          ] ;
+                                                                                      
+                                                                                      rdfs:subClassOf <http://www.semanticweb.org/djam/ontologies/countries_categorised#UndevelopedCountries> ;
+                                                                                      
+                                                                                      owl:disjointWith <http://www.semanticweb.org/djam/ontologies/countries_categorised#PartiallyDeveloped> ,
+                                                                                                       <http://www.semanticweb.org/djam/ontologies/countries_categorised#PartiallyUndeveloped> .
+
+
+
+###  http://www.semanticweb.org/djam/ontologies/countries_categorised#PartiallyDeveloped
+
+<http://www.semanticweb.org/djam/ontologies/countries_categorised#PartiallyDeveloped> rdf:type owl:Class ;
+                                                                                      
+                                                                                      owl:equivalentClass [ rdf:type owl:Class ;
+                                                                                                            owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                                                   owl:onProperty <http://wifo5-04.informatik.uni-mannheim.de/eurostat/resource/eurostat/levelOfInternetAccess> ;
+                                                                                                                                   owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                                        owl:onDatatype xsd:long ;
+                                                                                                                                                        owl:withRestrictions ( [ xsd:maxExclusive "49"^^xsd:long
+                                                                                                                                                                               ]
+                                                                                                                                                                             )
+                                                                                                                                                      ]
+                                                                                                                                 ]
+                                                                                                                                 [ rdf:type owl:Restriction ;
+                                                                                                                                   owl:onProperty <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#GDPperCapita> ;
+                                                                                                                                   owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                                        owl:onDatatype xsd:long ;
+                                                                                                                                                        owl:withRestrictions ( [ xsd:minInclusive "20000"^^xsd:long
+                                                                                                                                                                               ]
+                                                                                                                                                                             )
+                                                                                                                                                      ]
+                                                                                                                                 ]
+                                                                                                                               )
+                                                                                                          ] ,
+                                                                                                          [ rdf:type owl:Class ;
+                                                                                                            owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                                                   owl:onProperty <http://wifo5-04.informatik.uni-mannheim.de/eurostat/resource/eurostat/hospitalBedsPer100000Habitants> ;
+                                                                                                                                   owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                                        owl:onDatatype xsd:long ;
+                                                                                                                                                        owl:withRestrictions ( [ xsd:maxExclusive "150"^^xsd:long
+                                                                                                                                                                               ]
+                                                                                                                                                                             )
+                                                                                                                                                      ]
+                                                                                                                                 ]
+                                                                                                                                 [ rdf:type owl:Restriction ;
+                                                                                                                                   owl:onProperty <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#GDPperCapita> ;
+                                                                                                                                   owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                                        owl:onDatatype xsd:long ;
+                                                                                                                                                        owl:withRestrictions ( [ xsd:minInclusive "20000"^^xsd:long
+                                                                                                                                                                               ]
+                                                                                                                                                                             )
+                                                                                                                                                      ]
+                                                                                                                                 ]
+                                                                                                                               )
+                                                                                                          ] ,
+                                                                                                          [ rdf:type owl:Class ;
+                                                                                                            owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                                                   owl:onProperty <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#GDPperCapita> ;
+                                                                                                                                   owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                                        owl:onDatatype xsd:long ;
+                                                                                                                                                        owl:withRestrictions ( [ xsd:minInclusive "20000"^^xsd:long
+                                                                                                                                                                               ]
+                                                                                                                                                                             )
+                                                                                                                                                      ]
+                                                                                                                                 ]
+                                                                                                                                 [ rdf:type owl:Restriction ;
+                                                                                                                                   owl:onProperty <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#lifeexpectancyatbirth_totalpopulation> ;
+                                                                                                                                   owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                                        owl:onDatatype xsd:long ;
+                                                                                                                                                        owl:withRestrictions ( [ xsd:maxExclusive "71"^^xsd:long
+                                                                                                                                                                               ]
+                                                                                                                                                                             )
+                                                                                                                                                      ]
+                                                                                                                                 ]
+                                                                                                                               )
+                                                                                                          ] ,
+                                                                                                          [ rdf:type owl:Class ;
+                                                                                                            owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                                                   owl:onProperty <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#GDPperCapita> ;
+                                                                                                                                   owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                                        owl:onDatatype xsd:long ;
+                                                                                                                                                        owl:withRestrictions ( [ xsd:minInclusive "20000"^^xsd:long
+                                                                                                                                                                               ]
+                                                                                                                                                                             )
+                                                                                                                                                      ]
+                                                                                                                                 ]
+                                                                                                                                 [ rdf:type owl:Restriction ;
+                                                                                                                                   owl:onProperty <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#literacy_totalpopulation> ;
+                                                                                                                                   owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                                        owl:onDatatype xsd:long ;
+                                                                                                                                                        owl:withRestrictions ( [ xsd:maxExclusive "97"^^xsd:long
+                                                                                                                                                                               ]
+                                                                                                                                                                             )
+                                                                                                                                                      ]
+                                                                                                                                 ]
+                                                                                                                               )
+                                                                                                          ] ;
+                                                                                      
+                                                                                      rdfs:subClassOf <http://www.semanticweb.org/djam/ontologies/countries_categorised#DevelopedCountries> ;
+                                                                                      
+                                                                                      owl:disjointWith <http://www.semanticweb.org/djam/ontologies/countries_categorised#PartiallyUndeveloped> ,
+                                                                                                       <http://www.semanticweb.org/djam/ontologies/countries_categorised#UndevelopedCountries> .
+
+
+
+###  http://www.semanticweb.org/djam/ontologies/countries_categorised#PartiallyUndeveloped
+
+<http://www.semanticweb.org/djam/ontologies/countries_categorised#PartiallyUndeveloped> rdf:type owl:Class ;
+                                                                                        
+                                                                                        owl:equivalentClass [ rdf:type owl:Class ;
+                                                                                                              owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                                                     owl:onProperty <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#GDPperCapita> ;
+                                                                                                                                     owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                                          owl:onDatatype xsd:long ;
+                                                                                                                                                          owl:withRestrictions ( [ xsd:minExclusive "0"^^xsd:long
+                                                                                                                                                                                 ]
+                                                                                                                                                                               )
+                                                                                                                                                        ]
+                                                                                                                                   ]
+                                                                                                                                   [ rdf:type owl:Restriction ;
+                                                                                                                                     owl:onProperty <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#GDPperCapita> ;
+                                                                                                                                     owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                                          owl:onDatatype xsd:long ;
+                                                                                                                                                          owl:withRestrictions ( [ xsd:maxExclusive "20000"^^xsd:long
+                                                                                                                                                                                 ]
+                                                                                                                                                                               )
+                                                                                                                                                        ]
+                                                                                                                                   ]
+                                                                                                                                   [ rdf:type owl:Restriction ;
+                                                                                                                                     owl:onProperty <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#literacy_totalpopulation> ;
+                                                                                                                                     owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                                          owl:onDatatype xsd:long ;
+                                                                                                                                                          owl:withRestrictions ( [ xsd:minInclusive "70"^^xsd:long
+                                                                                                                                                                                 ]
+                                                                                                                                                                               )
+                                                                                                                                                        ]
+                                                                                                                                   ]
+                                                                                                                                 )
+                                                                                                            ] ,
+                                                                                                            [ rdf:type owl:Class ;
+                                                                                                              owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                                                     owl:onProperty <http://wifo5-04.informatik.uni-mannheim.de/eurostat/resource/eurostat/levelOfInternetAccess> ;
+                                                                                                                                     owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                                          owl:onDatatype xsd:long ;
+                                                                                                                                                          owl:withRestrictions ( [ xsd:minInclusive "49"^^xsd:long
+                                                                                                                                                                                 ]
+                                                                                                                                                                               )
+                                                                                                                                                        ]
+                                                                                                                                   ]
+                                                                                                                                   [ rdf:type owl:Restriction ;
+                                                                                                                                     owl:onProperty <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#GDPperCapita> ;
+                                                                                                                                     owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                                          owl:onDatatype xsd:long ;
+                                                                                                                                                          owl:withRestrictions ( [ xsd:minExclusive "0"^^xsd:long
+                                                                                                                                                                                 ]
+                                                                                                                                                                               )
+                                                                                                                                                        ]
+                                                                                                                                   ]
+                                                                                                                                   [ rdf:type owl:Restriction ;
+                                                                                                                                     owl:onProperty <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#GDPperCapita> ;
+                                                                                                                                     owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                                          owl:onDatatype xsd:long ;
+                                                                                                                                                          owl:withRestrictions ( [ xsd:maxExclusive "20000"^^xsd:long
+                                                                                                                                                                                 ]
+                                                                                                                                                                               )
+                                                                                                                                                        ]
+                                                                                                                                   ]
+                                                                                                                                 )
+                                                                                                            ] ,
+                                                                                                            [ rdf:type owl:Class ;
+                                                                                                              owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                                                     owl:onProperty <http://wifo5-04.informatik.uni-mannheim.de/eurostat/resource/eurostat/hospitalBedsPer100000Habitants> ;
+                                                                                                                                     owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                                          owl:onDatatype xsd:long ;
+                                                                                                                                                          owl:withRestrictions ( [ xsd:minInclusive "150"^^xsd:long
+                                                                                                                                                                                 ]
+                                                                                                                                                                               )
+                                                                                                                                                        ]
+                                                                                                                                   ]
+                                                                                                                                   [ rdf:type owl:Restriction ;
+                                                                                                                                     owl:onProperty <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#GDPperCapita> ;
+                                                                                                                                     owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                                          owl:onDatatype xsd:long ;
+                                                                                                                                                          owl:withRestrictions ( [ xsd:minExclusive "0"^^xsd:long
+                                                                                                                                                                                 ]
+                                                                                                                                                                               )
+                                                                                                                                                        ]
+                                                                                                                                   ]
+                                                                                                                                   [ rdf:type owl:Restriction ;
+                                                                                                                                     owl:onProperty <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#GDPperCapita> ;
+                                                                                                                                     owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                                          owl:onDatatype xsd:long ;
+                                                                                                                                                          owl:withRestrictions ( [ xsd:maxExclusive "20000"^^xsd:long
+                                                                                                                                                                                 ]
+                                                                                                                                                                               )
+                                                                                                                                                        ]
+                                                                                                                                   ]
+                                                                                                                                 )
+                                                                                                            ] ,
+                                                                                                            [ rdf:type owl:Class ;
+                                                                                                              owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                                                     owl:onProperty <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#GDPperCapita> ;
+                                                                                                                                     owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                                          owl:onDatatype xsd:long ;
+                                                                                                                                                          owl:withRestrictions ( [ xsd:minExclusive "0"^^xsd:long
+                                                                                                                                                                                 ]
+                                                                                                                                                                               )
+                                                                                                                                                        ]
+                                                                                                                                   ]
+                                                                                                                                   [ rdf:type owl:Restriction ;
+                                                                                                                                     owl:onProperty <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#GDPperCapita> ;
+                                                                                                                                     owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                                          owl:onDatatype xsd:long ;
+                                                                                                                                                          owl:withRestrictions ( [ xsd:maxExclusive "20000"^^xsd:long
+                                                                                                                                                                                 ]
+                                                                                                                                                                               )
+                                                                                                                                                        ]
+                                                                                                                                   ]
+                                                                                                                                   [ rdf:type owl:Restriction ;
+                                                                                                                                     owl:onProperty <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#lifeexpectancyatbirth_totalpopulation> ;
+                                                                                                                                     owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                                          owl:onDatatype xsd:long ;
+                                                                                                                                                          owl:withRestrictions ( [ xsd:minInclusive "71"^^xsd:long
+                                                                                                                                                                                 ]
+                                                                                                                                                                               )
+                                                                                                                                                        ]
+                                                                                                                                   ]
+                                                                                                                                 )
+                                                                                                            ] ;
+                                                                                        
+                                                                                        rdfs:subClassOf <http://www.semanticweb.org/djam/ontologies/countries_categorised#UndevelopedCountries> .
+
+
+
+###  http://www.semanticweb.org/djam/ontologies/countries_categorised#RegionsOfEurope
+
+<http://www.semanticweb.org/djam/ontologies/countries_categorised#RegionsOfEurope> rdf:type owl:Class ;
+                                                                                   
+                                                                                   rdfs:subClassOf <http://www.semanticweb.org/djam/ontologies/countries_categorised#Countries> .
+
+
+
+###  http://www.semanticweb.org/djam/ontologies/countries_categorised#UndevelopedCountries
+
+<http://www.semanticweb.org/djam/ontologies/countries_categorised#UndevelopedCountries> rdf:type owl:Class ;
+                                                                                        
+                                                                                        owl:equivalentClass [ rdf:type owl:Class ;
+                                                                                                              owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                                                     owl:onProperty <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#GDPperCapita> ;
+                                                                                                                                     owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                                          owl:onDatatype xsd:long ;
+                                                                                                                                                          owl:withRestrictions ( [ xsd:minExclusive "0"^^xsd:long
+                                                                                                                                                                                 ]
+                                                                                                                                                                               )
+                                                                                                                                                        ]
+                                                                                                                                   ]
+                                                                                                                                   [ rdf:type owl:Restriction ;
+                                                                                                                                     owl:onProperty <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#GDPperCapita> ;
+                                                                                                                                     owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                                          owl:onDatatype xsd:long ;
+                                                                                                                                                          owl:withRestrictions ( [ xsd:maxExclusive "20000"^^xsd:long
+                                                                                                                                                                                 ]
+                                                                                                                                                                               )
+                                                                                                                                                        ]
+                                                                                                                                   ]
+                                                                                                                                 )
+                                                                                                            ] ;
+                                                                                        
+                                                                                        rdfs:subClassOf <http://www.semanticweb.org/djam/ontologies/countries_categorised#Countries> .
+
+
+
+###  http://www.semanticweb.org/djam/ontologies/developed_or_not#MiddleEurope
+
+:MiddleEurope rdf:type owl:Class ;
+              
+              rdfs:subClassOf <http://www.semanticweb.org/djam/ontologies/countries_categorised#RegionsOfEurope> .
+
+
+
+###  http://www.semanticweb.org/djam/ontologies/developed_or_not#NorthEastEurope
+
+:NorthEastEurope rdf:type owl:Class ;
+                 
+                 rdfs:subClassOf <http://www.semanticweb.org/djam/ontologies/countries_categorised#RegionsOfEurope> .
+
+
+
+###  http://www.semanticweb.org/djam/ontologies/developed_or_not#NorthEurope
+
+:NorthEurope rdf:type owl:Class ;
+             
+             rdfs:subClassOf <http://www.semanticweb.org/djam/ontologies/countries_categorised#RegionsOfEurope> .
+
+
+
+###  http://www.semanticweb.org/djam/ontologies/developed_or_not#SouthEastEurope
+
+:SouthEastEurope rdf:type owl:Class ;
+                 
+                 rdfs:subClassOf <http://www.semanticweb.org/djam/ontologies/countries_categorised#RegionsOfEurope> .
+
+
+
+###  http://www.semanticweb.org/djam/ontologies/developed_or_not#SouthEurope
+
+:SouthEurope rdf:type owl:Class ;
+             
+             rdfs:subClassOf <http://www.semanticweb.org/djam/ontologies/countries_categorised#RegionsOfEurope> .
+
+
+
+###  http://www.semanticweb.org/djam/ontologies/developed_or_not#WestEurope
+
+:WestEurope rdf:type owl:Class ;
+            
+            rdfs:subClassOf <http://www.semanticweb.org/djam/ontologies/countries_categorised#RegionsOfEurope> .
+
+
+
+
+
+#################################################################
+#
+#    Individuals
+#
+#################################################################
+
+
+###  http://wifo5-04.informatik.uni-mannheim.de/factbook/resource/Hungary
+
+<http://wifo5-04.informatik.uni-mannheim.de/factbook/resource/Hungary> rdf:type <http://www.semanticweb.org/djam/ontologies/countries_categorised#Countries> ,
+                                                                                <http://www.semanticweb.org/djam/ontologies/countries_categorised#PartiallyUndeveloped> ,
+                                                                                <http://www.semanticweb.org/djam/ontologies/countries_categorised#RegionsOfEurope> ,
+                                                                                <http://www.semanticweb.org/djam/ontologies/countries_categorised#UndevelopedCountries> ,
+                                                                                :MiddleEurope ,
+                                                                                owl:NamedIndividual ;
+                                                                       
+                                                                       <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#GDPperCapita> "17300"^^xsd:long ;
+                                                                       
+                                                                       <http://wifo5-04.informatik.uni-mannheim.de/eurostat/resource/eurostat/levelOfInternetAccess> "32"^^xsd:long ;
+                                                                       
+                                                                       <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#lifeexpectancyatbirth_totalpopulation> "73"^^xsd:long ;
+                                                                       
+                                                                       <http://wifo5-04.informatik.uni-mannheim.de/eurostat/resource/eurostat/hospitalBedsPer100000Habitants> "782"^^xsd:long ;
+                                                                       
+                                                                       <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#literacy_totalpopulation> "99"^^xsd:long .
+
+
+
+###  http://wifo5-04.informatik.uni-mannheim.de/factbook/resource/Iceland
+
+<http://wifo5-04.informatik.uni-mannheim.de/factbook/resource/Iceland> rdf:type <http://www.semanticweb.org/djam/ontologies/countries_categorised#Countries> ,
+                                                                                <http://www.semanticweb.org/djam/ontologies/countries_categorised#DevelopedCountries> ,
+                                                                                <http://www.semanticweb.org/djam/ontologies/countries_categorised#OverallDeveloped> ,
+                                                                                <http://www.semanticweb.org/djam/ontologies/countries_categorised#RegionsOfEurope> ,
+                                                                                :NorthEurope ,
+                                                                                owl:NamedIndividual ;
+                                                                       
+                                                                       <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#GDPperCapita> "38100"^^xsd:long ;
+                                                                       
+                                                                       <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#lifeexpectancyatbirth_totalpopulation> "80"^^xsd:long ;
+                                                                       
+                                                                       <http://wifo5-04.informatik.uni-mannheim.de/eurostat/resource/eurostat/levelOfInternetAccess> "83"^^xsd:long ;
+                                                                       
+                                                                       <http://wifo5-04.informatik.uni-mannheim.de/eurostat/resource/eurostat/hospitalBedsPer100000Habitants> "911"^^xsd:long ;
+                                                                       
+                                                                       <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#literacy_totalpopulation> "99"^^xsd:long .
+
+
+
+###  http://wifo5-04.informatik.uni-mannheim.de/factbook/resource/Italy
+
+<http://wifo5-04.informatik.uni-mannheim.de/factbook/resource/Italy> rdf:type <http://www.semanticweb.org/djam/ontologies/countries_categorised#Countries> ,
+                                                                              <http://www.semanticweb.org/djam/ontologies/countries_categorised#DevelopedCountries> ,
+                                                                              <http://www.semanticweb.org/djam/ontologies/countries_categorised#PartiallyDeveloped> ,
+                                                                              <http://www.semanticweb.org/djam/ontologies/countries_categorised#RegionsOfEurope> ,
+                                                                              :SouthEurope ,
+                                                                              owl:NamedIndividual ;
+                                                                     
+                                                                     <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#GDPperCapita> "29700"^^xsd:long ;
+                                                                     
+                                                                     <http://wifo5-04.informatik.uni-mannheim.de/eurostat/resource/eurostat/levelOfInternetAccess> "40"^^xsd:long ;
+                                                                     
+                                                                     <http://wifo5-04.informatik.uni-mannheim.de/eurostat/resource/eurostat/hospitalBedsPer100000Habitants> "401"^^xsd:long ;
+                                                                     
+                                                                     <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#lifeexpectancyatbirth_totalpopulation> "80"^^xsd:long ;
+                                                                     
+                                                                     <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#literacy_totalpopulation> "99"^^xsd:long .
+
+
+
+###  http://wifo5-04.informatik.uni-mannheim.de/factbook/resource/Latvia
+
+<http://wifo5-04.informatik.uni-mannheim.de/factbook/resource/Latvia> rdf:type <http://www.semanticweb.org/djam/ontologies/countries_categorised#Countries> ,
+                                                                               <http://www.semanticweb.org/djam/ontologies/countries_categorised#PartiallyUndeveloped> ,
+                                                                               <http://www.semanticweb.org/djam/ontologies/countries_categorised#RegionsOfEurope> ,
+                                                                               <http://www.semanticweb.org/djam/ontologies/countries_categorised#UndevelopedCountries> ,
+                                                                               :NorthEastEurope ,
+                                                                               owl:NamedIndividual ;
+                                                                      
+                                                                      <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#literacy_totalpopulation> "100"^^xsd:long ;
+                                                                      
+                                                                      <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#GDPperCapita> "15400"^^xsd:long ;
+                                                                      
+                                                                      <http://wifo5-04.informatik.uni-mannheim.de/eurostat/resource/eurostat/levelOfInternetAccess> "42"^^xsd:long ;
+                                                                      
+                                                                      <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#lifeexpectancyatbirth_totalpopulation> "72"^^xsd:long ;
+                                                                      
+                                                                      <http://wifo5-04.informatik.uni-mannheim.de/eurostat/resource/eurostat/hospitalBedsPer100000Habitants> "779"^^xsd:long .
+
+
+
+###  http://wifo5-04.informatik.uni-mannheim.de/factbook/resource/Netherlands
+
+<http://wifo5-04.informatik.uni-mannheim.de/factbook/resource/Netherlands> rdf:type <http://www.semanticweb.org/djam/ontologies/countries_categorised#Countries> ,
+                                                                                    <http://www.semanticweb.org/djam/ontologies/countries_categorised#DevelopedCountries> ,
+                                                                                    <http://www.semanticweb.org/djam/ontologies/countries_categorised#OverallDeveloped> ,
+                                                                                    <http://www.semanticweb.org/djam/ontologies/countries_categorised#RegionsOfEurope> ,
+                                                                                    :WestEurope ,
+                                                                                    owl:NamedIndividual ;
+                                                                           
+                                                                           <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#GDPperCapita> "31700"^^xsd:long ;
+                                                                           
+                                                                           <http://wifo5-04.informatik.uni-mannheim.de/eurostat/resource/eurostat/hospitalBedsPer100000Habitants> "459"^^xsd:long ;
+                                                                           
+                                                                           <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#lifeexpectancyatbirth_totalpopulation> "79"^^xsd:long ;
+                                                                           
+                                                                           <http://wifo5-04.informatik.uni-mannheim.de/eurostat/resource/eurostat/levelOfInternetAccess> "80"^^xsd:long ;
+                                                                           
+                                                                           <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#literacy_totalpopulation> "99"^^xsd:long .
+
+
+
+###  http://wifo5-04.informatik.uni-mannheim.de/factbook/resource/Romania
+
+<http://wifo5-04.informatik.uni-mannheim.de/factbook/resource/Romania> rdf:type <http://www.semanticweb.org/djam/ontologies/countries_categorised#Countries> ,
+                                                                                <http://www.semanticweb.org/djam/ontologies/countries_categorised#PartiallyUndeveloped> ,
+                                                                                <http://www.semanticweb.org/djam/ontologies/countries_categorised#RegionsOfEurope> ,
+                                                                                <http://www.semanticweb.org/djam/ontologies/countries_categorised#UndevelopedCountries> ,
+                                                                                :SouthEastEurope ,
+                                                                                owl:NamedIndividual ;
+                                                                       
+                                                                       <http://wifo5-04.informatik.uni-mannheim.de/eurostat/resource/eurostat/levelOfInternetAccess> "14"^^xsd:long ;
+                                                                       
+                                                                       <http://wifo5-04.informatik.uni-mannheim.de/eurostat/resource/eurostat/hospitalBedsPer100000Habitants> "654"^^xsd:long ;
+                                                                       
+                                                                       <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#lifeexpectancyatbirth_totalpopulation> "72"^^xsd:long ;
+                                                                       
+                                                                       <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#GDPperCapita> "8800"^^xsd:long ;
+                                                                       
+                                                                       <http://wifo5-04.informatik.uni-mannheim.de/factbook/ns#literacy_totalpopulation> "98"^^xsd:long .
+
+
+
+
+###  Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net
+
